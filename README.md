@@ -1,1 +1,1 @@
-# SE577
+# This repo is for course SE577
