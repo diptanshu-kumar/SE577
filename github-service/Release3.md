@@ -5,7 +5,7 @@ Microservice for Github Repo Queries
 ## Steps to run the project
 
 1. Get a personal token for your github account.
-2. For the service to read your token; you must perform one of the following actions:
+2. For the service to read your personal github access token,
    - Update the `github-service/app.yaml` file, add new key/value `githubAccessToken:<your-personal-token>`
 3. Also, update 'githubUsername' key in app.yaml to your github user name
 4. Install all the dependencies using `npm install` commands:
