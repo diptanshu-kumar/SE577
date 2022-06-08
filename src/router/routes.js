@@ -20,6 +20,10 @@ const routes = [
         path: "/about",
         component: () => import("pages/AppPages/AboutMe.vue"),
       },
+      {
+        path: "/gists",
+        component: () => import("src/pages/AppPages/GistDetails.vue"),
+      },
     ],
   },
 

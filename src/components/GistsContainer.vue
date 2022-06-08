@@ -2,14 +2,13 @@
   <div v-if="hasError === true">Error</div>
   <div v-else>
     <div id="userInfo">
-      Enter Github Account Username:
+      Enter Github Username:
       <input type="text" v-model="userNameText"/>
-      <button @click="getReposFromGithub(userNameText)">Repository List</button>
+      <button @click="getGistsFromGithub(userNameText)">User Gists</button>
     </div>
-
     <ul>
-      <div class="col" v-for="project in data" v-bind:key="project.id">
-        <li><a :href="project.html_url">{{ project.name }}</a></li>
+      <div class="col" v-for="gist in data" v-bind:key="gist.id">
+        <li><a :href="gist.html_url">{{ gist.description }}</a></li>
       </div>
     </ul>
   </div>
@@ -20,7 +19,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'RepositoryContainer',
+  name: 'GistsContainer',
   data() {
     return {
       data: null,
@@ -30,11 +29,11 @@ export default {
   },
   methods:
   {
-    getReposFromGithub: function(userNameVal) {
+    getGistsFromGithub: function(userNameVal) {
       var userNameVal = userNameVal;
 
       axios
-      .get("http://localhost:7500/repos?username=" + userNameVal)
+      .get("http://localhost:7500/gists?username=" + userNameVal)
       .then(response => (
         this.data = response.data
       ))

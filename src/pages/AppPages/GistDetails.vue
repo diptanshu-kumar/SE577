@@ -1,15 +1,20 @@
 <template>
   <q-page class="flex flex-center">
     <div class="text-h6">
-      login goes here
+      <GistsContainer />
     </div>
   </q-page>
+
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import GistsContainer from '../../components/GistsContainer.vue'
 
 export default defineComponent({
-  name: 'GithubLogin'
+  name: 'GistList',
+  components: {
+    GistsContainer,
+  }
 })
 </script>
