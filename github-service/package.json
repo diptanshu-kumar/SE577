@@ -1,0 +1,19 @@
+{
+  "name": "github-service",
+  "version": "1.0.0",
+  "description": "Github Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0"
+  }
+}

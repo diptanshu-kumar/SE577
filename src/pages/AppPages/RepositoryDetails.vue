@@ -1,15 +1,19 @@
 <template>
   <q-page class="flex flex-center">
     <div class="text-h6">
-      repo details will go here
+      <GithubProjectsContainer />
     </div>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import GithubProjectsContainer from '../../components/ProjectsContainer.vue'
 
 export default defineComponent({
-  name: 'RepoDetails'
+  name: 'RepositoryDetails',
+  components: {
+    GithubProjectsContainer,
+  }
 })
 </script>
