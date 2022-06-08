@@ -15,10 +15,24 @@ npm install js-yaml
 npm install cors
 npm install express
 
-### Run the service
+### Run the service without Docker
 
 To start server, run the command below from the `github-service` directory:
 Navigate to `github-service` directory and run `npm start` to start the service on port mentioned in app.yaml, default port is 7500
+
+### Run the service with Docker
+
+Build docker image using below command:
+
+```
+docker build -t github-service .
+```
+Run the image created using command:
+
+```
+docker run -dp 7500:7500 github-service
+```
+You can check the status of container on Docker app, container status should show as `running`
 
 ## To start the UI
 Navigate to proj-release-2 directory on terminal and run `npm install -g @quasar/cli` command. 
