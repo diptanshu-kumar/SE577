@@ -10,15 +10,12 @@
       <div class="col">
         <ul>
           <li>Name: {{data.name}}</li>
-          <li>Bio: {{data.bio}}</li>
           <li>Location: {{data.location}}</li>
           <li><a :href="'#repos?username=' + data.login">View Repo List</a></li>
           <li><a :href="'#repoinfo?username=' + data.login">View Details of Repos</a></li>
           <li><a :href="'#gists?username=' + data.login">View Gists</a></li>
-          <li><a :href="data.html_url" target="_blank">Github Page for {{ data.login }}</a></li>
-          <li>Public Repo Count: {{data.public_repos}}</li>
+          <li>Public Repository Count: {{data.public_repos}}</li>
           <li>Public Gist Count: {{data.public_gists}}</li>
-          <li><img :src="data.avatar_url"></li>
         </ul>
       </div>
     </div>
