@@ -54,6 +54,12 @@ export default {
       })
       .finally(() => this.isLoading = false)
       }
+  },
+  created: function(){
+    var user = this.userNameText;
+    if(user) {
+      this.getReposFromGithub(user)
+    }
   }
 }
 

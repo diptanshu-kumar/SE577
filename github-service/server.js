@@ -18,23 +18,31 @@ try {
 
 const PORT = process.env.PORT || config.port || 3000;
 const GITHUB_ACCESS_TOKEN =
-  process.env.MY_GITHUB_TOKEN || config.githubAccessToken;
-
-const REQ_HEADERS = {
-  Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
-  "Content-Type": "application/json",
-  Accept: "application/vnd.github.mercy-preview+json",
-};
+  config.githubAccessToken || process.env.MY_GITHUB_TOKEN;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/user", (req, res) => {
+  axios({
+    method: "get",
+    url: `https://api.github.com/users/${getUsername(req)}`,
+    headers: generateHeaders(req),
+  })
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 app.get("/repos", (req, res) => {
   axios({
     method: "get",
     url: `https://api.github.com/users/${getUsername(req)}/repos`,
-    headers: REQ_HEADERS,
+    headers: generateHeaders(req),
   })
     .then((response) => {
       res.send(response.data);
@@ -50,7 +58,21 @@ app.get("/branches", (req, res) => {
     url: `https://api.github.com/repos/${getUsername(req)}/${
       req.query.repo
     }/branches`,
-    headers: REQ_HEADERS,
+    headers: generateHeaders(req),
+  })
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.get("/gists", (req, res) => {
+  axios({
+    method: "get",
+    url: `https://api.github.com/users/${getUsername(req)}/gists`,
+    headers: generateHeaders(req),
   })
     .then((response) => {
       res.send(response.data);
@@ -65,9 +87,42 @@ module.exports = app.listen(PORT, () => {
 });
 
 function getUsername(req) {
-  if (req.query.username != null) {
+  if (isNotEmpty(req.query.username)) {
     return req.query.username;
   }
 
   return config.githubUsername;
+}
+
+function generateHeaders(req) {
+  var token = getToken(req);
+
+  if (isNotEmpty(token)) {
+    var bearer = "Bearer " + token;
+
+    return {
+      Authorization: bearer,
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.mercy-preview+json",
+    };
+  } else {
+    return {
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.mercy-preview+json",
+    };
+  }
+}
+
+function getToken(req) {
+  var username = getUsername(req);
+
+  if (username === config.githubUsername) {
+    return GITHUB_ACCESS_TOKEN;
+  }
+
+  return null;
+}
+
+function isNotEmpty(value) {
+  return value && value.length > 0;
 }

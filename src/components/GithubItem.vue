@@ -20,7 +20,8 @@ export default {
   props: {
     title: String,
     urlLink: String,
-    tags: Array
+    tags: Array,
+    language: String
   }
 }
 

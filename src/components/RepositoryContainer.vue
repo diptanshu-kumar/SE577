@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       data: null,
-      isLoading: true,
-      hasError: false
+      hasError: false,
+      userNameText: this.$route.query.username
     }
   },
   methods:
@@ -44,6 +44,12 @@ export default {
       })
       .finally(() => this.isLoading = false)
       }
+  },
+  created: function(){
+    var user = this.userNameText;
+    if(user) {
+      this.getReposFromGithub(user)
+    }
   }
 }
 

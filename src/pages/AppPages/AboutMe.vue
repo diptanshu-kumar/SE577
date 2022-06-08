@@ -8,8 +8,12 @@
 
 <script>
 import { defineComponent } from 'vue'
+import UserContainer from '../../components/UserContainer.vue'
 
 export default defineComponent({
-  name: 'AboutMe'
+  name: 'AboutMe',
+  components: {
+    UserContainer,
+  }
 })
 </script>

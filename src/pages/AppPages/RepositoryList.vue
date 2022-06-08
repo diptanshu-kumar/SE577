@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div class="text-h6">
-      <GithubReposContainer />
+      <RepositoryContainer />
     </div>
   </q-page>
 
@@ -9,12 +9,12 @@
 
 <script>
 import { defineComponent } from 'vue'
-import GithubReposContainer from '../../components/RepositoryContainer.vue'
+import RepositoryContainer from '../../components/RepositoryContainer.vue'
 
 export default defineComponent({
   name: 'RepositoryList',
   components: {
-    GithubReposContainer,
+    RepositoryContainer,
   }
 })
 </script>
